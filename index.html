@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Filters Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+  <h2 class="text-primary mb-4">Bootstrap Filters Project</h2>
+
+  <!-- 🔍 TABLE FILTER -->
+  <h4>Filter Table</h4>
+  <input class="form-control mb-3" id="tableInput" type="text" placeholder="Search table...">
+
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <tr><td>John</td><td>Doe</td><td>john@example.com</td></tr>
+      <tr><td>Mary</td><td>Moe</td><td>mary@mail.com</td></tr>
+      <tr><td>July</td><td>Dooley</td><td>july@great.com</td></tr>
+      <tr><td>Anja</td><td>Ravendale</td><td>a_r@test.com</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 📋 LIST FILTER -->
+  <h4 class="mt-5">Filter List</h4>
+  <input class="form-control mb-3" id="listInput" type="text" placeholder="Search list...">
+
+  <ul class="list-group" id="myList">
+    <li class="list-group-item">Apple</li>
+    <li class="list-group-item">Banana</li>
+    <li class="list-group-item">Orange</li>
+    <li class="list-group-item">Mango</li>
+  </ul>
+
+  <!-- 📦 DIV FILTER -->
+  <h4 class="mt-5">Filter Any Content</h4>
+  <input class="form-control mb-3" id="divInput" type="text" placeholder="Search content...">
+
+  <div id="myDiv">
+    <p class="border p-2">This is a paragraph</p>
+    <div class="border p-2">This is a div element</div>
+    <button class="btn btn-primary m-1">Button One</button>
+    <button class="btn btn-success m-1">Button Two</button>
+    <p class="border p-2">Another paragraph</p>
+  </div>
+
+</div>
+
+<!-- 🔧 jQuery Filter Logic -->
+<script>
+$(document).ready(function(){
+
+  // Table Filter
+  $("#tableInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tableBody tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+  // List Filter
+  $("#listInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+  // Div Filter
+  $("#divInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myDiv *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>
